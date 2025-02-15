@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -27,22 +27,24 @@ const QuestionPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { data, isLoading, error } = useGetAllQuestionQuery();
-  const [deleteQuestion, { isLoading: isDeleting, status }] =
+  const [deleteQuestion, { isLoading: isDeleting }] =
     useDeleteQuestionMutation();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleDelete = (id: string) => {
-    if (window.confirm(t("questionPage.deleteConfirmation"))) {
-      deleteQuestion(id).unwrap();
-    }
-  };
+  const handleDelete = useCallback(
+    (id: string) => {
+      if (window.confirm(t("questionPage.deleteConfirmation"))) {
+        deleteQuestion(id).unwrap();
+      }
+    },
+    [deleteQuestion, t]
+  );
 
   const memoizedTableRows = useMemo(() => {
     if (isLoading) {
       return (
         <TableRow>
           <TableCell colSpan={5}>
-            <Skeleton variant="rectangular" width="100%" height={150} />
+            <Skeleton variant="rectangular" width="100%" height={150} data-testid="question-skeleton" />
           </TableCell>
         </TableRow>
       );
@@ -78,8 +80,8 @@ const QuestionPage = () => {
 
     return data.map((item) => (
       <TableRow
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         key={item._id}
+        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
         <TableCell
           component="th"
@@ -110,12 +112,10 @@ const QuestionPage = () => {
             onClick={() => handleDelete(item._id)}
             disabled={isDeleting}
           >
-            {isDeleting && status === "pending"
-              ? t("questionPage.deleting")
-              : t("questionPage.delete")}
+            {isDeleting ? t("questionPage.deleting") : t("questionPage.delete")}
           </Button>
           <Link to={`/dashboard/edit-question/${item._id}`}>
-            <Button variant="contained">Edit</Button>
+            <Button variant="contained" data-testid="edit-button">Edit</Button>
           </Link>
         </TableCell>
       </TableRow>
@@ -123,13 +123,12 @@ const QuestionPage = () => {
   }, [
     data,
     error,
-    handleDelete,
     isDeleting,
     isLoading,
-    status,
     theme.palette.error.main,
     theme.palette.grey,
     t,
+    handleDelete,
   ]);
 
   return (
@@ -162,6 +161,7 @@ const QuestionPage = () => {
               color: theme.palette.primary.light,
             }}
             startIcon={<ControlPointIcon />}
+            data-testid="add-question-button"
           >
             {t("questionPage.addNewQuestion")}
           </Button>

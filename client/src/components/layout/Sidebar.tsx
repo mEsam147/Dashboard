@@ -24,9 +24,9 @@ const sideLinks = [
   },
   {
     id: 2,
-    text: "Announcement",
-    href: "/dashboard/announcement",
-    icon: <CampaignIcon fontSize="large" />,
+    text: "Questions",
+    href: "/dashboard/questions",
+    icon: <QuestionAnswerIcon fontSize="large" />,
   },
   {
     id: 3,
@@ -36,9 +36,9 @@ const sideLinks = [
   },
   {
     id: 4,
-    text: "Questions",
-    href: "/dashboard/questions",
-    icon: <QuestionAnswerIcon fontSize="large" />,
+    text: "Announcement",
+    href: "/dashboard/announcement",
+    icon: <CampaignIcon fontSize="large" />,
   },
 ];
 
@@ -57,7 +57,7 @@ const Sidebar = ({
     <Drawer
       open={open}
       onClose={toggleDrawer(false)}
-      variant={isMobile ? "temporary" : "permanent"} // Make it temporary on small screens
+      variant={isMobile ? "temporary" : "permanent"}
       anchor="left"
       sx={{
         width: { md: drawerWidth },

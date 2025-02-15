@@ -51,7 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -114,9 +113,21 @@ export default function Header({
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      sx={{
+        "& .MuiMenuItem-root": {
+          color: theme.palette.primary.main, 
+          "&:hover": {
+            backgroundColor: theme.palette.primary.light, 
+          },
+        },
+      }}
     >
-      <MenuItem onClick={() => handleLanguageChange("en")}>{t("header.en")}</MenuItem>
-      <MenuItem onClick={() => handleLanguageChange("ar")}>{t("header.ar")}</MenuItem>
+      <MenuItem onClick={() => handleLanguageChange("en")}>
+        {t("header.en")}
+      </MenuItem>
+      <MenuItem onClick={() => handleLanguageChange("ar")}>
+        {t("header.ar")}
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Button
           variant="outlined"
@@ -249,7 +260,7 @@ export default function Header({
               <SearchIcon sx={{ color: theme.palette.secondary.main }} />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder={t("header.search_placeholder")}
               inputProps={{ "aria-label": "search" }}
             />
           </Search>

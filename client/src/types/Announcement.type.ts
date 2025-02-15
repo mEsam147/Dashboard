@@ -3,5 +3,5 @@ export interface Announcement {
   title: string;
   description: string;
   author: string;
-  createdAt?: Date;
+  createdAt?: string;
 }

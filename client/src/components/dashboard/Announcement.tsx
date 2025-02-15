@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import AnnouncementSkeleton from "../skeletons/AnnouncementSkeleton";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { formatDate } from "../../utils/helpers";
 
 const Announcement = () => {
   const [open, setOpen] = useState(false);
@@ -57,6 +58,7 @@ const Announcement = () => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: isRTL ? "row-reverse" : "row",
           alignItems: "center",
           justifyContent: "space-between",
           px: 1,
@@ -229,6 +231,7 @@ const Announcement = () => {
             px: 4,
             flexDirection: isRTL ? "row-reverse" : "row",
           }}
+          key={item._id}
         >
           <Box sx={{ display: "flex", gap: 2 }}>
             <img
@@ -261,7 +264,7 @@ const Announcement = () => {
                   textShadow: "0px 0px 5px rgba(0,0,0,0.2)",
                 }}
               >
-                {t("AnnouncementComponent.Date")}
+                {formatDate(item?.createdAt as string)}
               </Typography>
             </Box>
           </Box>

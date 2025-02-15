@@ -42,6 +42,6 @@ const quizSchema = new mongoose.Schema(
 );
 
 // Create a model from the schema
-const Quiz = mongoose.model("Quiz", quizSchema);
+const Quiz = mongoose.model<Quiz>("Quiz", quizSchema);
 
 export default Quiz;

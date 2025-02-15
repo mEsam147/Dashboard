@@ -15,6 +15,4 @@ const announcementSchema = new Schema<Announcement>(
   { timestamps: true }
 );
 
-const Announcement = model<Announcement>("announcement", announcementSchema);
-
-export default Announcement;
+export default model<Announcement>("announcement", announcementSchema);

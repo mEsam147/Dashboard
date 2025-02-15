@@ -11,7 +11,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
     return <Navigate to="/" replace state={{ from: location.pathname }} />;
   }
 
-  return children; // Render the children component if authenticated
+  return children; 
 };
 
 export default RequireAuth;

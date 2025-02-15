@@ -47,7 +47,7 @@ const QuizPage = () => {
     return (
       <Container maxWidth="lg">
         <Typography variant="h6" color="error" align="center" sx={{ my: 2 }}>
-          t("quizPage.error_fetching_quizzes")
+          {t("quizPage.error_fetching_quizzes")}
         </Typography>
       </Container>
     );

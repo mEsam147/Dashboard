@@ -4,7 +4,6 @@ import Question from "../models/question.model";
 import mongoose from "mongoose";
 
 const { ObjectId } = mongoose.Types;
-
 export const createQuiz = async (req: Request, res: Response) => {
   try {
     const { title, questions, studentAnswers, topic, course } = req.body;
