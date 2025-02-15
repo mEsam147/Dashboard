@@ -31,6 +31,11 @@ server/.env  # This line ensures the .env file in the server folder is ignored
 *.sln
 *.sw?
 
+.env
+node_modules
+
 server/uploads/
 
+
+server/.env
 
