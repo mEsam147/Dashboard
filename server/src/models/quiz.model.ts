@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-interface Quiz {
-  title: string;
-  topic: string;
-  course: string;
-  questions: [];
-  studentAnswers: [];
-  completed: boolean;
-}
+// interface Quiz {
+//   title: string;
+//   topic: string;
+//   course: string;
+//   questions: [];
+//   studentAnswers: [];
+//   completed: boolean;
+// }
 // Define the quiz schema
 const quizSchema = new mongoose.Schema(
   {
@@ -42,6 +42,6 @@ const quizSchema = new mongoose.Schema(
 );
 
 // Create a model from the schema
-const Quiz = mongoose.model<Quiz>("Quiz", quizSchema);
+const Quiz = mongoose.model("Quiz", quizSchema);
 
 export default Quiz;
